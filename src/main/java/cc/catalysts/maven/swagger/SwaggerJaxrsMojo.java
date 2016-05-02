@@ -1,6 +1,7 @@
 package cc.catalysts.maven.swagger;
 
 import com.fasterxml.jackson.databind.ObjectWriter;
+import io.swagger.jaxrs.Reader;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.models.Info;
 import io.swagger.models.Swagger;
@@ -82,11 +83,9 @@ public class SwaggerJaxrsMojo extends AbstractMojo {
 
             getLog().debug("Scanning " + classes.size() + " classes:");
             for (Class<?> aClass : classes) {
-                getLog().info(aClass.getName());
+                getLog().debug(aClass.getName());
             }
         }
-
-        beanConfig.scanAndRead();
 
         try {
             File swaggerSpecDir = new File(outputDirectory);
@@ -122,7 +121,7 @@ public class SwaggerJaxrsMojo extends AbstractMojo {
 
                 Files.createDirectories(output.toPath().getParent());
 
-                Swagger swagger = beanConfig.getSwagger();
+                Swagger swagger = new Reader(beanConfig.getSwagger()).read(beanConfig.classes());
                 swagger.setInfo(info);
                 writer.writeValue(output, swagger);
                 getLog().debug("." + output.getPath() + " generated");
