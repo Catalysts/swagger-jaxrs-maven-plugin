@@ -29,7 +29,7 @@ It lists all possible configuration options with its default values:
             <plugin>
                 <groupId>cc.catalysts</groupId>
                 <artifactId>swagger-jaxrs-maven-plugin</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>1.0.0</version>
                 <configuration>
                     <ouputDirectory>${project.build.directory}/generated-resources/swagger-jaxrs</ouputDirectory>
                     <ouputFormats>json,yaml</ouputFormats>
