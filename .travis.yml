@@ -2,7 +2,7 @@ language: java
 jdk:
   - oraclejdk8
 after_success:
-- if [ "$TRAVIS_BRANCH" == "master" ]; then mvn source:jar javadoc:jar deploy --settings
+- if [ "$TRAVIS_BRANCH" == "master" ]; then mvn deploy --settings
   travis-settings.xml && ./maven_sync.sh ; fi
 env:
   global:
